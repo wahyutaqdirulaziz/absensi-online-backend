@@ -11,7 +11,7 @@ import {
     UseGuards,
     UseInterceptors
 } from '@nestjs/common';
-import {ApiQuery, ApiSecurity, ApiTags} from "@nestjs/swagger";
+import { ApiSecurity, ApiTags} from "@nestjs/swagger";
 import {UsersService} from "./users.service";
 
 import {JwtAuthGuard} from "../auth/jwt-auth.guard";

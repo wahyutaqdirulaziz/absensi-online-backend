@@ -24,12 +24,37 @@ model User {
   name      String
   surname   String?
   role Role @default(STAFF)
+  attendances Attendance[] // Tambahkan relasi ini
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now()) @updatedAt
 
   @@map("user")
 }
+
+
+model Attendance {
+  id        Int       @id @default(autoincrement())
+  date      DateTime  @default(now())
+  status    Status    @default(PRESENT)
+  longitude Float?
+  latitude  Float?
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+
+  @@map("attendance")
+}
+
+enum Status {
+  PRESENT
+  ABSENT
+  LATE
+  ON_LEAVE
+}
+
 //That is a list of a role that we will use for this tutorial
 //we can extend this depend of your project.
 enum Role {
